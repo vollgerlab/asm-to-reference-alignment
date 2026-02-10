@@ -1,42 +1,46 @@
 # Reference alignment workflow
 [![DOI](https://zenodo.org/badge/414304026.svg)](https://zenodo.org/badge/latestdoi/414304026)
 
-This repository is a snakemake workflow for aligning many genome assemblies to a reference genome using my preferred parameters, tools, and outputs. 
+This repository is a snakemake workflow for aligning many genome assemblies to a reference genome using my preferred parameters, tools, and outputs.
 
 This workflow is also convenient for making inputs for my visualization tool [SafFire](https://mrvollger.github.io/SafFire/).
 
-## try the test case
+## Setup
 
-```
-snakemake --configfile .test/config.yaml      
-```
-
-## an example run script
-
-```
-snakemake --configfile config/config.yaml 
+Install [pixi](https://pixi.sh) and then:
+```bash
+pixi install
 ```
 
-## an example run script with ideograms
+## Try the test case
 
-```
-snakemake --configfile config/config.yaml ideogram 
+```bash
+pixi run test
 ```
 
-## note on arm Macs
-For arm Macs (MX) many bioconda packages are not available, but I have had luck with the following:
+## An example run
+
+```bash
+pixi run snakemake --configfile config/config.yaml
 ```
-CONDA_SUBDIR=osx-64 snakemake --configfile config/config.yaml 
+
+## An example run with ideograms
+
+```bash
+pixi run snakemake --configfile config/config.yaml ideogram
+```
+
+## Format workflow files
+
+```bash
+pixi run fmt
 ```
 
 ### Notes on use of the pipeline in Vollger et al., 2023
 Running alignment and gene conversion identification pipeline:
-```
-snakemake \
+```bash
+pixi run snakemake \
     --configfile config/config_asm20.yaml \
-    --cores $threads \
-    --use-conda \
-    -p \
     gene_conversion
 ```
 Information on where to download the input assemblies can be found on [Zenodo](https://doi.org/10.5281/zenodo.6792653).

@@ -1,0 +1,22 @@
+[workspace]
+authors = ["Mitchell R. Vollger <mrvollger@gmail.com>"]
+channels = ["conda-forge", "bioconda"]
+description = "Snakemake workflow for aligning genome assemblies to a reference"
+name = "asm-to-reference-alignment"
+platforms = ["osx-64", "linux-64"]
+version = "0.0.1"
+
+[tasks]
+fmt = "snakefmt workflow/"
+test = { cmd = [
+  "snakemake",
+  "--configfile",
+  ".test/config.yaml",
+] }
+snakemake = { cmd = "cd $INIT_CWD && snakemake -s $PIXI_PROJECT_ROOT/workflow/Snakefile" }
+
+[dependencies]
+conda = "*"
+snakemake = ">=8.21"
+snakefmt = "*"
+snakemake-executor-plugin-slurm = "*"
